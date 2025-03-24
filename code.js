@@ -1,6 +1,7 @@
 //Initial declarations
 //let userInput = prompt("What's your calculation?");
-let inputArray;
+let inputString = "";
+let operationArray = [];
 let firstNumber = 0;
 let secondNumber = 0;
 let operation;
@@ -8,21 +9,51 @@ let result = 0;
 
 //querySelectors
 const display = document.querySelector("#textbox");
-const zero = document.querySelector("#zero");
-const one = document.querySelector("#one")
-const two = document.querySelector("#two")
+const equals = document.querySelector("#equals");
+const clear = document.querySelector("#clear");
+const buttons = document.querySelector("#buttons");
 
-function stripInput(userInput) {
-    inputArray = userInput.split(/([^\d.])/);
-    firstNumber = parseInt(inputArray[0]);
-    secondNumber = parseInt(inputArray[2]);
-    operation = inputArray[1];
+//DOM Manipulation
+buttons.addEventListener("click", (e) => {
+    const target = e.target;
+
+    if (target.tagName === 'BUTTON') {
+        //inputString = target.textContent;
+        inputString = inputString.concat("", target.textContent);
+        //console.log(inputString);
+        display.value = inputString;
+    }
+});
+
+equals.addEventListener("click", () => {
+    stripInput(inputString);
+    operator(operation);
+    display.value = result.toFixed(2);
+    console.log(operationArray);
+    //console.log(result);
+    clearNumbers();
+})
+
+clear.addEventListener("click", () => {
+    clearNumbers();
+    display.value = "0";
+})
+
+function stripInput(string) {
+    operationArray = string.split(/([^\d.])/);
+    if (operationArray[0] == "") {
+        firstNumber = parseInt(result);
+    } else {
+        firstNumber = parseInt(operationArray[0]);
+    }
+    secondNumber = parseInt(operationArray[2]);
+    operation = operationArray[1];
 };
 
-//stripInput(userInput);
 
 function add() {
     result = firstNumber + secondNumber;
+    console.log(`${firstNumber} + ${secondNumber} = ${result}`);
 };
 
 function subtract() {
@@ -49,20 +80,7 @@ function operator(sign) {
     }
 }
 
-operator(operation);
-
-//DOM Manipulation
-zero.addEventListener("click", () => {
-    display.value = "ZERO";
-})
-
-one.addEventListener("click", ()=>{
-    display.value = "ONE"
-})
-
-two.addEventListener("click", ()=>{
-    display.value = "TWO"
-})
-
-console.log(`After: ${inputArray}`);
-console.log(`Result: ${result}`);
+function clearNumbers() {
+    inputString = "";
+    operationArray = [];
+}
