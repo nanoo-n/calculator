@@ -2,8 +2,8 @@
 const display = document.querySelector("#textbox");
 const equals = document.querySelector("#equals");
 const clear = document.querySelector("#clear");
-const buttons = document.querySelector("#buttons");
-const operators = document.querySelector("#operators");
+const buttons = document.querySelectorAll(".button");
+const operators = document.querySelectorAll(".operator");
 
         //*initial declarations
 let firstNumber = "";
@@ -12,7 +12,8 @@ let result = 0;
 let operator;
 
         //*event listeners
-buttons.addEventListener("click", (e) => {
+
+buttons.forEach((btn) => btn.addEventListener("click", (e) => {
     const target = e.target;
 
     if (target.tagName === 'BUTTON') {
@@ -25,16 +26,16 @@ buttons.addEventListener("click", (e) => {
             display.value = secondNumber;
         }
     }
-});
+}));
 
-operators.addEventListener("click", (e) => {
+operators.forEach((op) => op.addEventListener("click", (e) => {
     const target = e.target;
 
     if (target.tagName === 'BUTTON') {
         operator = target.textContent;
         display.value = operator;
     }
-})
+}));
 
 equals.addEventListener("click", () => {
     operation(operator);

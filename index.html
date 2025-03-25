@@ -8,28 +8,32 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="buttons">
-        <button type="button" class="button" id="zero">0</button>
-        <button type="button" class="button" id="one">1</button>
-        <button type="button" class="button" id="two">2</button>
-        <button type="button" class="button" id="three">3</button>
-        <button type="button" class="button" id="four">4</button>
-        <button type="button" class="button" id="five">5</button>
-        <button type="button" class="button" id="six">6</button>
-        <button type="button" class="button" id="seven">7</button>
-        <button type="button" class="button" id="eight">8</button>
-        <button type="button" class="button" id="nine">9</button>
-    </div>
-    <div id="operators">
-            <button type="button" class="button" id="plus">+</button>
-            <button type="button" class="button" id="minus">-</button>
-            <button type="button" class="button" id="multiplied">*</button>
-            <button type="button" class="button" id="divided">/</button>
-            <input type="text" id="textbox" name="project" placeholder="0">
-    </div>
-    <div id="special-btns">
-        <button type="button" id="equals">=</button>
-        <button type="button" id="clear">Clear</button>
+    <div id="calc">
+        <input type="text" id="textbox" name="project" placeholder="0">
+        <div id="squares">
+            <div id="buttons">
+                <button type="button" class="button" id="zero">0</button>
+                <button type="button" class="button" id="one">1</button>
+                <button type="button" class="button" id="two">2</button>
+                <button type="button" class="button" id="three">3</button>
+                <button type="button" class="button" id="four">4</button>
+                <button type="button" class="button" id="five">5</button>
+                <button type="button" class="button" id="six">6</button>
+                <button type="button" class="button" id="seven">7</button>
+                <button type="button" class="button" id="eight">8</button>
+                <button type="button" class="button" id="nine">9</button>
+            </div>
+            <div id="operators">
+                    <button type="button" class="operator" id="plus">+</button>
+                    <button type="button" class="operator" id="minus">-</button>
+                    <button type="button" class="operator" id="multiplied">*</button>
+                    <button type="button" class="operator" id="divided">/</button>
+            </div>
+        </div>
+        <div id="special-btns">
+            <button type="button" id="clear">Clear</button>
+            <button type="button" id="equals">=</button>
+        </div>
     </div>
 </body>
 </html>

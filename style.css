@@ -1,0 +1,16 @@
+#calc {    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#squares {
+    display: flex;
+    flex-direction: row;
+}
+
+#buttons {
+    display: flex;
+    flex-direction: column;
+}
