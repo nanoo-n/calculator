@@ -10,6 +10,7 @@ let firstNumber = "";
 let secondNumber = "";
 let result = 0;
 let operator;
+display.disabled = true;
 
         //*event listeners
 
@@ -18,14 +19,19 @@ buttons.forEach((btn) => btn.addEventListener("click", (e) => {
 
     if (target.tagName === 'BUTTON') {
         if (operator == undefined) {
-            firstNumber = firstNumber.concat("", target.textContent);
+            if (firstNumber.length < 4) {
+                firstNumber = firstNumber.concat("", target.textContent);
+            }
             display.value = firstNumber;
         }
         if (operator !== undefined) {
-            secondNumber = secondNumber.concat("", target.textContent);
+            if (secondNumber.length < 4) {
+                secondNumber = secondNumber.concat("", target.textContent);
+            }
             display.value = secondNumber;
         }
     }
+    
 }));
 
 operators.forEach((op) => op.addEventListener("click", (e) => {
@@ -39,8 +45,13 @@ operators.forEach((op) => op.addEventListener("click", (e) => {
 
 equals.addEventListener("click", () => {
     operation(operator);
-    display.value = result.toFixed(2);
-    console.log(`${result}`);
+    if (isFinite(result)) {
+        (result % 1) !== 0 ? display.value = result.toFixed(2) : display.value = result;
+    } else {
+        display.style.fontSize = "20px";
+        display.value = "Syntax Error";
+        result = 0;
+    }
     clearNumbers();
 })
 
@@ -70,7 +81,6 @@ function divide() {
 }
 
 function operation(sign) {
-    console.log(`firstNumber ${firstNumber} ${operator} secondNumber ${secondNumber}`);
     if (sign == "+") {
         add();
     } else if (sign == "-") {
@@ -82,8 +92,16 @@ function operation(sign) {
     }
 }
 
+
+        //*General functions & info
 function clearNumbers() {
     firstNumber = result;
     secondNumber = "";
     operator = undefined;
+    display.style.fontSize = "50px";
 }
+
+//*TODOs:
+//! Avoid error when pressing = before entering all numbers
+//! Add way of restarting calculation if numbers are pressed after result
+//! Add decimal to calculator

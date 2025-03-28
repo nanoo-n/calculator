@@ -4,6 +4,7 @@ body {
     align-items: center;
     width: 100vw;
     height: 100vh;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .button, .operator, #equals {
@@ -24,7 +25,8 @@ body {
     max-height: 100px;
     max-width: 224px;
     text-align: right;
-    font-size: 80px;
+    font-size: 50px;
+    color: black;
     border: 1px solid black;
     border-radius: 5px;
     background-color: #dddddd;
@@ -37,6 +39,7 @@ body {
     flex-direction: column;
     max-width: 240px;
     padding: 5px;
+    padding-top: 20px;
     background-color: #004d81;
     border: 2px solid black;
     border-radius: 6px;
