@@ -9,11 +9,12 @@ const operators = document.querySelectorAll(".operator");
 let firstNumber = "";
 let secondNumber = "";
 let result = 0;
+let placeholderNumber = "";
 let operator;
 display.disabled = true;
+display.value = "0";
 
         //*event listeners
-
 buttons.forEach((btn) => btn.addEventListener("click", (e) => {
     const target = e.target;
 
@@ -25,6 +26,9 @@ buttons.forEach((btn) => btn.addEventListener("click", (e) => {
             display.value = firstNumber;
         }
         if (operator !== undefined) {
+            if (firstNumber == "" && placeholderNumber == result) {
+                firstNumber = placeholderNumber;
+            }
             if (secondNumber.length < 4) {
                 secondNumber = secondNumber.concat("", target.textContent);
             }
@@ -45,22 +49,19 @@ operators.forEach((op) => op.addEventListener("click", (e) => {
 
 equals.addEventListener("click", () => {
     operation(operator);
-    if (isFinite(result)) {
-        (result % 1) !== 0 ? display.value = result.toFixed(2) : display.value = result;
-    } else {
-        display.style.fontSize = "20px";
-        display.value = "Syntax Error";
+    if (!isFinite(result) || secondNumber == "") {
+        display.value = "Sytx Err";
         result = 0;
+    } else {
+        (result % 1) !== 0 ? display.value = result.toFixed(2) : display.value = result;
     }
-    clearNumbers();
+    equalsFunction();
+    placeholderNumber = result;
+    console.log(`AFTER: fn ${firstNumber}, op ${operator}, sn ${secondNumber}, res ${result}, phN ${placeholderNumber}`);
 })
 
 clear.addEventListener("click", () => {
-    result = 0;
-    firstNumber = "";
-    secondNumber = "";
-    operator = undefined;
-    display.value = "0";
+    clearNumbers();
 })
 
         //*operation functions
@@ -92,16 +93,24 @@ function operation(sign) {
     }
 }
 
-
         //*General functions & info
-function clearNumbers() {
-    firstNumber = result;
+function equalsFunction() {
+    // firstNumber = display.value;
+    firstNumber = "";
     secondNumber = "";
     operator = undefined;
-    display.style.fontSize = "50px";
 }
 
-//*TODOs:
-//! Avoid error when pressing = before entering all numbers
-//! Add way of restarting calculation if numbers are pressed after result
-//! Add decimal to calculator
+function clearNumbers() {
+    result = 0;
+    firstNumber = "";
+    secondNumber = "";
+    placeholderNumber = 0;
+    operator = undefined;
+    display.value = "0";
+}
+
+    //!Additional TODOs:
+// Add decimal to calculator
+// Add backspace button to delete
+// Add keyboard support
